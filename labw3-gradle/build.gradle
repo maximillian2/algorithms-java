@@ -1,0 +1,24 @@
+group 'nau.algorithms'
+version '1.0-release'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.github.javafaker:javafaker:0.7'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Algorithms laboratory work #3 (Tree)',
+                'Built-By': 'Maksym Tymoshyk',
+                'Implementation-Version': version,
+                'Main-Class': 'nau.algorithms.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
